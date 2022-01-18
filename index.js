@@ -21,14 +21,19 @@ const videoRouter = require("./routes/video");
 app.get("/", (req, res) => {
   res.send("Hello sir");
 });
-app.use("/video", videoRouter);
+ app.use("/video", videoRouter);
+
+app.use("/upload", require("./routes/s3"));
+//app.use("/upload", require("./routes/uploadvideoandgeneratethumbnail"));
+// app.use("/upload", require("./routes/uploadwithsubmittedthumbnail"));
+
 app.use("/users", require("./routes/users"));
 app.use("/subscribe", require("./routes/subscribe"));
 app.use("/comment", require("./routes/comment"));
 app.use("/like", require("./routes/like"));
 
-app.use("/uploads", express.static("uploads"));
-app.use("uploads/thumbnails", express.static("uploads/thumbnails"));
+// app.use("/uploads", express.static("uploads"));
+//app.use("uploads/thumbnails", express.static("uploads/thumbnails"));
 
 const port = process.env.PORT || 5000;
 
